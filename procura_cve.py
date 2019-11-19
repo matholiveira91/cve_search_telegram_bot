@@ -7,19 +7,19 @@
 
 import pycve as cve 
 import json
-import requests 
-vendor=str(input("digite o fabricante que deseja buscar/t"))
-product=str(input("digite o produto que deseja bsucar"))
-cvid=str(input("digite a cvid que deseja buscar"))
+#import requests 
+op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n")
+if (op==1):
+    vendor=input("digite o fabricante que deseja buscar\n")
+    busca_vendor(vendor)
+elif (op==2):
+    product=input("digite o produto que deseja bsucar\n")
+    busca_product(product
+else:
+    cvid=input("digite a cvid que deseja buscar\n")
 
-def busca(vendor,product,cvid):
-    if vendor is not None:
-        json.load([cve.browse(vendor)],j1)
-    elif product is not None:    
-        json.load([cve.search(product)],j2)
-    elif cvid is not None:
-        json.load([cve.id(cvid)],j3)
-    else:
-        json.load([cve.last()],j4)
-    
+def busca_vendor(vendor):
+    json.loads("Busca por fabricante: ",[cve.browse(vendor)],result)
+    return result
+def busca_product 
 
