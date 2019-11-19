@@ -5,17 +5,14 @@
 # LICENSE GPLV3 
 # DESCRIPTION BOT TO SEARCH CVE BY VENDOR AND PRODUCT
 
-import pyCVE as cve 
+import pycve as cve 
 import json
 import requests 
+vendor=str(input("digite o fabricante que deseja buscar/t"))
+product=str(input("digite o produto que deseja bsucar"))
+cvid=str(input("digite a cvid que deseja buscar"))
 
-def main:
-    
-    vendor=str(raw_input("digite o fabricante que deseja buscar"))
-    product=str(raw_input("digite o produto que deseja bsucar"))
-    cvid=str(raw_input("digite a cvid que deseja buscar"))
-    return vendor product cvid
-def busca(vendor,product):
+def busca(vendor,product,cvid):
     if vendor is not None:
         json.load([cve.browse(vendor)],j1)
     elif product is not None:    
