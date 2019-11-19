@@ -12,4 +12,11 @@ import requests
 def main:
     vendor=str(raw_input("digite o fabricante que deseja buscar"))
     product=str(raw_input("digite o produto que deseja bsucar"))
-    
+    cvid=str(raw_input("digite a cvid que deseja buscar"))
+    return vendor product cvid
+def busca(vendor,product):
+    d1=cve.browse(vendor)
+    d2=cve.search(product)
+    d3=cve.id(cvid)
+    j1=json_string'{"d1"}'
+
