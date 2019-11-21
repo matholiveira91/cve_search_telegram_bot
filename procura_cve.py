@@ -1,12 +1,19 @@
 #!/usr/env/bin python3
+# _*_ coding utf-8 _*_
 
 # AUTHOR: MATHEUS OLIVEIRA
 # DATE: 14/11/2019
 # LICENSE GPLV3 
 # DESCRIPTION BOT TO SEARCH CVE BY VENDOR AND PRODUCT
 
-import pycve as cve 
+import requests as rq 
 import json
+from urlib.parse import urljoin
+
+base_url='https://cve.circl.lu'
+session=requests.Session()
+session.headers.update({'content-type': 'aplication/json': 'User-Agent': 'procura_cve'})
+timeout= timeout 
 
 op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n4 as ultimas cves"))
 if (op==1):
