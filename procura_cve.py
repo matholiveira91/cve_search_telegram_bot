@@ -5,52 +5,21 @@
 # DATE: 14/11/2019
 # LICENSE GPLV3 
 # DESCRIPTION BOT TO SEARCH CVE BY VENDOR AND PRODUCT
+from pycvesearch import CVESearch 
 
-import requests as rq 
-import json
-from urlib.parse import urljoin
-
-base_url='https://cve.circl.lu'
-session=requests.Session()
-session.headers.update({'content-type': 'aplication/json': 'User-Agent': 'procura_cve'})
-timeout= timeout 
-
-op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n4 as ultimas cves"))
+#-------------------------------------------------------------
+vuln=CVESearch()
+op=int(input("digite 1 para ir à pagina do fabricante\n\n2 para pesquisar por produto\n\n3 para pesquisar por CVE_id\n\n4 as ultimas cves\n\n"))
 if (op==1):
-    vendor=input("digite o fabricante que deseja buscar\n")
-    busca_vendor(vendor)
-elif(op==2):
-    product=input("digite o produto que deseja bsucar\n")
-    busca_product(product)
-elif(op==3):
-    cvid=input("digite a cvid que deseja buscar\n")
-    busca_id(cvid)
-else:
-    last()
-#-----------------------------------------------------------------
-def busca_vendor(vendor):
-    json.loads("Busca por fabricante: ",[cve.browse(vendor)],result)
-    return result
-def busca_product(product): 
-    json.loads("Busca por produto: ",[cve.search(product)],result)
-    return result
-def busca_id(cvid):
-    json.loads("Busca por cvid: ",[cve.id(cveid)],result)
-    return result
-def last():
-    json.loads("Ultimas registradas: ",[cve.last],result)
-    return result 
-
-op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n4 as ultimas cves"))
-if (op==1):
-    vendor=input("digite o fabricante que deseja buscar\n")
-    busca_vendor(vendor)
+    vendor= input("digite o nome do fabricante\n")
+    vuln.browse(vendor)
 elif (op==2):
-    product=input("digite o produto que deseja bsucar\n")
-    busca_product(product)
+    product= input("digite o nome do produto que deseja pesquisar\n")
+    vuln.search(product)
 elif (op==3):
-    cvid=input("digite a cvid que deseja buscar\n")
-    busca_id(cvid)
+    cvid= input("digite o id que deseja buscar \n")
+    vuln.id(cvid)
 else:
-    last()
+    vuln.last()
+
 
