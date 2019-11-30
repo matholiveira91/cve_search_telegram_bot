@@ -15,12 +15,17 @@ if (op==1):
     print('pagina do vendor {}\n'.format(vuln.browse(vendor)))
 elif (op==2):
     product= input("digite o nome do produto que deseja pesquisar\n")
-    print('vulnerabilidades cadastradas para o produto {}\n'.format(vuln.search(product)))
+    #print('vulnerabilidades cadastradas para o produto {}\n'.format(vuln.search(product)))
+    busca=vuln.search(product)
+    
+    vid=busca['data'][0]['id']
+    print(vid)       
 elif (op==3):
     cvid= input("digite o id que deseja buscar \n")
-    
     print('detalhes da CVE solicitada {}\n'.format(vuln.id(cvid)))
 else:
+    ultimas=vuln.last()
     print('últimas CVEs cadastradas {}\n'.format(vuln.last()))
+
 
 
