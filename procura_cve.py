@@ -31,12 +31,12 @@ def busca_id(cvid):
 
 def ultimas():
     busca=vuln.last()
-    vid=busca[-1]['id']
-    score=busca[-1]['cvss']
-    resumo=busca[-1]['summary']
-    access=busca[-1]['access']
-    impact=busca[-1]['impact']
-    vproduct=busca[-1]['vulnerable_product']
+    vid=busca[0]['id']
+    score=busca[0]['cvss']
+    resumo=busca[0]['summary']
+    access=busca[0]['access']
+    impact=busca[0]['impact']
+    vproduct=busca[0]['vulnerable_product']
     print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct)  
    
 
