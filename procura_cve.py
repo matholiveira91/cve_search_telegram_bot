@@ -18,20 +18,37 @@ def busca_produto(produto):
     access=busca['data'][-1]['access']
     impact=busca['data'][-1]['impact']
     vproduct=busca['data'][-1]['vulnerable_product']
-    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE=ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct)  
+    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct)  
 
-op=int(input("digite 1 para ir à pagina do fabricante\n\n2 para pesquisar por produto\n\n3 para pesquisar por CVE_id\n\n4 as ultimas cves\n\n"))
+def busca_id(cvid):
+    busca=vuln.id(cvid)
+    impact=busca['impact']
+    access=busca['access']
+    score=busca['cvss']
+    resumo=busca['summary']
+    vproduct=busca['vulnerable_product']
+    print("Resultado da consulta \n ---------- \n","Resumo: ",resumo,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto: ",impact,"\n\n Produto Atingido: ",vproduct)
+
+def ultimas():
+    busca=vuln.last()
+    vid=busca[-1]['id']
+    score=busca[-1]['cvss']
+    resumo=busca[-1]['summary']
+    access=busca[-1]['access']
+    impact=busca[-1]['impact']
+    vproduct=busca[-1]['vulnerable_product']
+    print("Resultado da consulta \n ---------- \n","Resumo: ",resumo,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto: ",impact,"\n\n Produto Atingido: ",vproduct)
+   
+
+op=int(input("1 para pesquisar por produto\n\n2 para pesquisar por CVE_id\n\n3 as ultimas cves\n\n"))
 if (op==1):
-    vendor= input("digite o nome do fabricante\n")
-    print('pagina do vendor {}\n'.format(vuln.browse(vendor)))
-elif (op==2):
    produto=input("digite o produto que deseja pesquisar\n") 
    busca_produto(produto)       
-elif (op==3):
+elif (op==2):
     cvid= input("digite o id que deseja buscar \n")
-    print('detalhes da CVE solicitada {}\n'.format(vuln.id(cvid)))
+    busca_id(cvid)
 else:
-    ultimas=vuln.last()
-    print('últimas CVEs cadastradas {}\n'.format(vuln.last()))
+    ultimas()
+    
 
 
