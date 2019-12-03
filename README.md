@@ -12,7 +12,8 @@ I'm using the wrapper from https://github.com/cve-search/PyCVESearch but adoptin
 cd pycvesearch 
 pip install . 
 cd ..
-python3 procura_cve.py ```
+python3 procura_cve.py 
+```
 
 ## FUNCTIONS 
 
