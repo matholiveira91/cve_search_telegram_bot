@@ -12,13 +12,15 @@ vuln=CVESearch()
 
 def busca_produto(produto):
     busca=vuln.search(produto)
+    print("ADVERT:\n---------------\nSERÁ EXIBIDO APENAS O ULTIMO RESULTADO(O MAIS RECENTE)\n\n\n")
     vid=busca['data'][-1]['id']
     score=busca['data'][-1]['cvss']
     resumo=busca['data'][-1]['summary']
     access=busca['data'][-1]['access']
     impact=busca['data'][-1]['impact']
     vproduct=busca['data'][-1]['vulnerable_product']
-    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct)  
+    refs=busca['data'][-1]['references']
+    print("Resultado da consulta \n-------------\n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\nReferências: ",refs,"\n------------\n")  
 
 def busca_id(cvid):
     busca=vuln.id(cvid)
@@ -27,7 +29,8 @@ def busca_id(cvid):
     score=busca['cvss']
     resumo=busca['summary']
     vproduct=busca['vulnerable_product']
-    print("Resultado da consulta \n ---------- \n","Resumo: ",resumo,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto: ",impact,"\n\n Produto Atingido: ",vproduct)
+    refs=busca['references']
+    print("Resultado da consulta \n ---------- \n","Resumo: ",resumo,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto: ",impact,"\n\n Produto Atingido: ",vproduct,"\n\nReferências: ",refs,"\n--------\n")
 
 def ultimas():
     busca=vuln.last()
@@ -37,7 +40,9 @@ def ultimas():
     access=busca[0]['access']
     impact=busca[0]['impact']
     vproduct=busca[0]['vulnerable_product']
-    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct)  
+    refs=busca[0]['references']
+    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\n Referências: ",refs,"\n ---------------- \n")  
+
    
 
 op=int(input("1 para pesquisar por produto\n\n2 para pesquisar por CVE_id\n\n3 as ultimas cves\n\n"))
