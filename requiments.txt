@@ -1,4 +1,0 @@
-python-telegram
-json
-requests 
-urllib
