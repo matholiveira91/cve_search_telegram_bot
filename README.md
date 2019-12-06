@@ -8,7 +8,8 @@ I'm using the wrapper from https://github.com/cve-search/PyCVESearch but adoptin
 
 ## USAGE 
 
-``` bash
+```sh
+git clone https://github.com/Jul10l1r4/cve_search_telegram_bot.git --recursive
 cd pycvesearch 
 pip install . 
 cd ..
