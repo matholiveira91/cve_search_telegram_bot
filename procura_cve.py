@@ -1,49 +1,59 @@
 #!/usr/env/bin python3
+# _*_ coding utf-8 _*_
 
 # AUTHOR: MATHEUS OLIVEIRA
 # DATE: 14/11/2019
 # LICENSE GPLV3 
 # DESCRIPTION BOT TO SEARCH CVE BY VENDOR AND PRODUCT
+from pycvesearch import CVESearch 
 
-import pycve as cve 
-import json
+#-------------------------------------------------------------
+vuln=CVESearch()
 
-op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n4 as ultimas cves"))
-if (op==1):
-    vendor=input("digite o fabricante que deseja buscar\n")
-    busca_vendor(vendor)
-elif(op==2):
-    product=input("digite o produto que deseja bsucar\n")
-    busca_product(product)
-elif(op==3):
-    cvid=input("digite a cvid que deseja buscar\n")
-    busca_id(cvid)
-else:
-    last()
-#-----------------------------------------------------------------
-def busca_vendor(vendor):
-    json.loads("Busca por fabricante: ",[cve.browse(vendor)],result)
-    return result
-def busca_product(product): 
-    json.loads("Busca por produto: ",[cve.search(product)],result)
-    return result
+def busca_produto(produto):
+    busca=vuln.search(produto)
+    print("ADVERT:\n---------------\nSERÁ EXIBIDO APENAS O ULTIMO RESULTADO(O MAIS RECENTE)\n\n\n")
+    vid=busca['data'][-1]['id']
+    score=busca['data'][-1]['cvss']
+    resumo=busca['data'][-1]['summary']
+    access=busca['data'][-1]['access']
+    impact=busca['data'][-1]['impact']
+    vproduct=busca['data'][-1]['vulnerable_product']
+    refs=busca['data'][-1]['references']
+    print("Resultado da consulta \n-------------\n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\nReferências: ",refs,"\n------------\n")  
+
 def busca_id(cvid):
-    json.loads("Busca por cvid: ",[cve.id(cveid)],result)
-    return result
-def last():
-    json.loads("Ultimas registradas: ",[cve.last],result)
-    return result 
+    busca=vuln.id(cvid)
+    impact=busca['impact']
+    access=busca['access']
+    score=busca['cvss']
+    resumo=busca['summary']
+    vproduct=busca['vulnerable_product']
+    refs=busca['references']
+    print("Resultado da consulta \n ---------- \n","Resumo: ",resumo,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto: ",impact,"\n\n Produto Atingido: ",vproduct,"\n\nReferências: ",refs,"\n--------\n")
 
-op=int(input("digite 1 para pesquisar por fabricante\n2 para pesquisar por produto\n 3 para pesquisar por CVE_id\n4 as ultimas cves"))
+def ultimas():
+    busca=vuln.last()
+    vid=busca[0]['id']
+    score=busca[0]['cvss']
+    resumo=busca[0]['summary']
+    access=busca[0]['access']
+    impact=busca[0]['impact']
+    vproduct=busca[0]['vulnerable_product']
+    refs=busca[0]['references']
+    print("Resultado da consulta \n ------------- \n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\n Referências: ",refs,"\n ---------------- \n")  
+
+   
+
+op=int(input("1 para pesquisar por produto\n\n2 para pesquisar por CVE_id\n\n3 as ultimas cves\n\n"))
 if (op==1):
-    vendor=input("digite o fabricante que deseja buscar\n")
-    busca_vendor(vendor)
+   produto=input("digite o produto que deseja pesquisar\n") 
+   busca_produto(produto)       
 elif (op==2):
-    product=input("digite o produto que deseja bsucar\n")
-    busca_product(product)
-elif (op==3):
-    cvid=input("digite a cvid que deseja buscar\n")
+    cvid= input("digite o id que deseja buscar \n")
     busca_id(cvid)
 else:
-    last()
+    ultimas()
+    
+
 
