@@ -20,7 +20,7 @@ def busca_produto(produto):
     impact=busca['data'][-1]['impact']
     vproduct=busca['data'][-1]['vulnerable_product']
     refs=busca['data'][-1]['references']
-    print("Resultado da consulta \n-------------\n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\nReferências: ",refs,"\n------------\n")  
+    return "Resultado da consulta \n-------------\n","Resumo: ",resumo,"\n\n CVE-ID: ",vid,"\n\n Acesso: ",access,"\n\n CVSS: ",score,"\n\n Impacto",impact,"\n\n Produtos Atingidos: ",vproduct,"\n\nReferências: ",refs,"\n------------\n"  
 
 def busca_id(cvid):
     busca=vuln.id(cvid)
@@ -45,15 +45,13 @@ def ultimas():
 
    
 
-op=int(input("1 para pesquisar por produto\n\n2 para pesquisar por CVE_id\n\n3 as ultimas cves\n\n"))
-if (op==1):
-   produto=input("digite o produto que deseja pesquisar\n") 
-   busca_produto(produto)       
-elif (op==2):
-    cvid= input("digite o id que deseja buscar \n")
-    busca_id(cvid)
-else:
-    ultimas()
+#op=int(input("1 para pesquisar por produto\n\n2 para pesquisar por CVE_id\n\n3 as ultimas cves\n\n"))
+#if (op==1):
+#   produto=input("digite o produto que deseja pesquisar\n") 
+#   busca_produto(produto)       
+#elif (op==2):
+#    cvid= input("digite o id que deseja buscar \n")
+#    busca_id(cvid)
+#else:
+#    ultimas()
     
-
-
