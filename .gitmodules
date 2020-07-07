@@ -1,3 +1,0 @@
-[submodule "PyCVESearch"]
-	path = PyCVESearch
-	url = https://github.com/cve-search/PyCVESearch.git
