@@ -2,7 +2,7 @@
 
 TELEGRAM CHAT BOT TO SEARCH CVE'S
 ---
-I'm using the API https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/ form RED HAT to wrap the vulnerabilities form RHSA database 
+I'm using the API https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/ form RED HAT to wrap the vulnerabilities from RHSA database 
 
 ---
 
