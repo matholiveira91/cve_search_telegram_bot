@@ -2,24 +2,25 @@
 
 TELEGRAM CHAT BOT TO SEARCH CVE'S
 ---
-I'm using the wrapper from https://github.com/cve-search/PyCVESearch but adopting python3 syntax for integration with the API https://cve.circl.lu/api/ for search CVE'S	i'm searching to methods to integrate with mitre and NVD databases for a more acurated result but i dont find any eficient method to wrap this and for now this will be suficient, for now this will be all cli interface but soon i'll integrate with a telegram bot but first things first
+I'm using the API https://access.redhat.com/documentation/en-us/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/ form RED HAT to wrap the vulnerabilities from RHSA database 
 
 ---
 
 ## USAGE 
 
 ```sh
-git clone https://github.com/Jul10l1r4/cve_search_telegram_bot.git --recursive
-cd pycvesearch 
-pip install . 
-cd ..
-python3 procura_cve.py 
+git clone https://github.com/matholiveira91/cve_search_telegram_bot.git 
+ 
+python3 cve.py 
 ```
 
 ## FUNCTIONS 
 
 ### busca
-permit to search a vunerable product by his name or vendor/hisname for less ambiguos return 
+permit to search a vunerable product by his name 
 
-### id
-permit to search a vulnerability by cve-id with the format: CVE-YEAR-ID example: CVE-2019-19516
+**PS**
+to alter the number of pages alter the param perpage by default the api will show only the first page ordened by date, the newst to the oldst like a LIFO   
+
+### cvid
+permit to search a vulnerability by cve-id with the format: CVE-YEARID example: CVE-201919516
