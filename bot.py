@@ -3,43 +3,40 @@
 # PURPUSE TELEGRAM BOT WHOS SEARCH TO CVE's by vendor or product
 
 from telegram.ext import Updater, CommandHandler, MessageHandler 
-import logging
-from os import environ 
-from procura_cve import busca_produto
+from dotenv import load_dotenv
+from os import environ
+from support import cve
+load_dotenv()
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# Commands
-def search(bot, update):
+def term(bot, update):
    text = " ".join(update["message"]["text"].split()[1:])
-   # Chamar funcao
-   blob = busca_produto(text)
+   blob = cve.get_data(text)
    message_search = (
-           f"Pesquisa: {blob}\n"
-           "Resultado:"
+           f"{cve.result(blob)}"
            )
    update.message.reply_text(message_search)
 
+def cvid(bot, update):
+   text = " ".join(update["message"]["text"].split()[1:])
+   blob = cve.search_cvid(text)
+   message_search = (
+           f"{cve.result(blob)}"
+           )
+   update.message.reply_text(message_search)
+
+
 def error(bot, update, error):
     """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, error)
+    print(f"[{update}] Erro: {error}")
 
-# Motor
-def main():
+if __name__ == '__main__':
     """Start the bot."""
     updater = Updater(environ["TOKEN"])
     dp = updater.dispatcher
-    dp.add_handler(CommandHandler("search", search))
+    dp.add_handler(CommandHandler("term", term))
+    dp.add_handler(CommandHandler("cvid", cvid))
     dp.add_error_handler(error)
 
     updater.start_polling()
     updater.idle()
-
-
-if __name__ == '__main__':
-    main()
-
-            
 
