@@ -5,7 +5,7 @@ API_HOST = 'https://access.redhat.com/hydra/rest/securitydata'
 endpoint = '/cve.json'
 
 def get_data(query):
-    full_query = f"{API_HOST}{endpoint}?package={query}"
+    full_query = f"{API_HOST}{endpoint}?package={query}&per_page=15"
     r = get(full_query)
 
     if r.status_code != 200:
