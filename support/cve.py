@@ -23,6 +23,8 @@ def search_id(cvid):
 
 def result(data):
     output = ""
+    if data == None:
+        return "uiuiui"
     for cve in data:
         output += f"\n{cve['CVE']}\nIMPACTO:\t{cve['severity']}\nDESCIÇÃO:\t{cve['bugzilla_description']}\nLINK: \t\t{cve['resource_url']}\n"
     return output
