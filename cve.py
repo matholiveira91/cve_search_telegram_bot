@@ -31,7 +31,8 @@ produto = input('Digite o produto que deseja pesquisar ou o "cvid" para pesquisa
 
 if (produto != 'cvid'):
     params = f'package={produto}'
-    data=get_data(f'{endpoint}?{params}')
+    npg = f'per_page=15'
+    data=get_data(f'{endpoint}?{params}&{npg}')
 else: 
     cvid = input("digite um ou mais CVEIDs separado(s) por virgula no forma CVE-ANONUMERO\n")
     data=busca_id(cvid)
@@ -43,11 +44,11 @@ for cve in data:
 print('-----')
 # Get a list of kernel advisories for the last 30 days and display the
 # packages that they provided.
-endpoint = '/cvrf.json'
-date = datetime.now() - timedelta(days=5)
-params = 'package=kernel&after=' + str(date.date())
+#endpoint = '/cvrf.json'
+#date = datetime.now() - timedelta(days=5)
+#params = 'package=kernel&after=' + str(date.date()) 
 
-data = get_data(endpoint + '?' + params)
+#data = get_data(endpoint + '?' + params)
 
 #kernel_advisories = []
 #for advisory in data:
